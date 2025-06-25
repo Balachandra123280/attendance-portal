@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login - Attendance Portal</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="login-container">
+    <h1 class="welcome-text">WELCOME</h1>
+    <marquee class="marquee-text">PLEASE GIVE YOUR LOGIN CREDENTIALS</marquee>
+    <h2 class="portal-text">ATTENDANCE PORTAL</h2>
+
+    <div class="login-form">
+      <input type="text" id="username" placeholder="Enter Username">
+      <input type="password" id="password" placeholder="Enter Password">
+      <button onclick="loginAdmin()">Login</button>
+      <p id="loginMsg"></p>
+    </div>
+  </div>
+
+  <script>
+    function loginAdmin() {
+      const user = document.getElementById("username").value.trim();
+      const pass = document.getElementById("password").value.trim();
+      const msg = document.getElementById("loginMsg");
+
+      if (user === "Admin_123" && pass === "Admin_123") {
+        window.location.href = "admin.html";
+      } else {
+        msg.innerText = "❌ Invalid username or password";
+        msg.style.color = "red";
+      }
+    }
+  </script>
+</body>
+</html>
+

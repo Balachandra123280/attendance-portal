@@ -1,0 +1,89 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="sidebar">
+    <button onclick="showSection('hubSection')">🏢 Manage HUB & Checkpost</button>
+    <button onclick="showSection('employeeSection')">👨‍💼 Add Employee</button>
+    <button onclick="showSection('viewEmployeeSection')">📋 View/Edit/Delete Employees</button>
+    <button onclick="showSection('attendanceSection')">📝 Mark Attendance</button>
+    <button onclick="showSection('monthlyReportSection')">📆 Monthly Report</button>
+    <button onclick="showSection('dailyReportSection')">📅 Daily Report</button>
+    <button onclick="exportToCSV()">⬇️ Export CSV</button>
+  </div>
+
+  <div class="content">
+    <div id="popupMsg" class="popup"></div>
+
+    <!-- HUB & Checkpost -->
+    <div class="form-section" id="hubSection">
+      <h2>🏢 Manage HUB & Checkpost</h2>
+      <input type="text" id="newHubName" placeholder="Enter HUB Name" />
+      <button onclick="addHub()">Add HUB</button>
+
+      <select id="hubSelect"></select>
+      <input type="text" id="newCheckpostName" placeholder="Enter Checkpost" />
+      <button onclick="addCheckpost()">Add Checkpost</button>
+    </div>
+
+    <!-- Add Employee -->
+    <div class="form-section" id="employeeSection" style="display:none">
+      <h2>👨‍💼 Add Employee</h2>
+      <input type="text" id="empName" placeholder="Name of the Employee (as per Aadhar)" />
+      <input type="text" id="empSurname" placeholder="Surname" />
+      <input type="text" id="empMobile" placeholder="Mobile Number" />
+      <input type="text" id="empLocation" placeholder="Location" />
+      <input type="text" id="empBankAccount" placeholder="Bank Account Number" />
+      <input type="text" id="empIFSC" placeholder="IFSC Code" />
+      <input type="text" id="empBankName" placeholder="Name of the Bank" />
+      <input type="text" id="empPAN" placeholder="PAN Number" />
+
+      <select id="empHubSelect" onchange="updateEmpCheckpostSelect()"></select>
+      <select id="empCheckpostSelect"></select>
+      <button onclick="addEmployee()">Add Employee</button>
+    </div>
+
+    <!-- View Employee -->
+    <div class="form-section" id="viewEmployeeSection" style="display:none">
+      <h2>📋 View / Edit / Delete Employees</h2>
+      <div id="employeeTable"></div>
+    </div>
+
+    <!-- Mark Attendance -->
+    <div class="form-section" id="attendanceSection" style="display:none">
+      <h2>📝 Mark Attendance</h2>
+      <select id="attendanceHubSelect" onchange="renderAttendance()"></select>
+      <input type="month" id="attendanceMonth" onchange="renderAttendance()" />
+      <div id="attendanceTable"></div>
+    </div>
+
+    <!-- Monthly Report -->
+    <div class="form-section" id="monthlyReportSection" style="display:none">
+      <h2>📆 Monthly Attendance Report</h2>
+      <select id="reportMonthHubSelect" onchange="renderMonthlyReport()"></select>
+      <input type="month" id="reportMonth" onchange="renderMonthlyReport()" />
+      <div id="monthlyReportTable"></div>
+    </div>
+
+    <!-- Daily Report -->
+    <div class="form-section" id="dailyReportSection" style="display:none">
+      <h2>📅 Daily Attendance Report</h2>
+      <label for="reportHubSelect">Select HUB:</label>
+      <select id="reportHubSelect"></select>
+
+      <label for="reportDateInput">Select Date:</label>
+      <input type="date" id="reportDateInput" />
+
+      <button onclick="renderDailyReport()">View Report</button>
+      <div id="dailyReportTable" style="margin-top: 20px;"></div>
+    </div>
+  </div>
+
+  <script src="js/admin.js"></script>
+</body>
+</html>

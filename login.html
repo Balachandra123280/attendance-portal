@@ -1,0 +1,38 @@
+ <!DOCTYPE html>
+<html>
+<head>
+  <title>Login | Attendance Portal</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body class="login-bg">
+  <marquee class="marquee">PLEASE GIVE YOUR LOGIN CREDENTIALS</marquee>
+  <div class="login-box">
+    <h1 class="main-heading">WELCOME</h1>
+    <h2 class="sub-heading">ATTENDANCE PORTAL</h2>
+    <form onsubmit="return checkLogin()">
+      <input type="text" id="username" placeholder="Enter Username" required /><br />
+      <input type="password" id="password" placeholder="Enter Password" required /><br />
+      <button type="submit">Login</button>
+    </form>
+    <p id="error" class="error-text"></p>
+  </div>
+
+  <script>
+    function checkLogin() {
+      const u = document.getElementById('username').value;
+      const p = document.getElementById('password').value;
+      if ((u === 'Admin_123' && p === 'Admin_123') || (u === 'Client_123' && p === 'Client_123')) {
+        if (u.startsWith('Admin')) {
+          window.location.href = 'admin.html';
+        } else {
+          window.location.href = 'client.html';
+        }
+        return false;
+      } else {
+        document.getElementById('error').innerText = 'Invalid credentials. Try again.';
+        return false;
+      }
+    }
+  </script>
+</body>
+</html>
